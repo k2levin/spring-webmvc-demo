@@ -17,14 +17,15 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
-@ComponentScan(basePackages="com.k2studio")
+@ComponentScan(basePackages = "com.k2studio")
 @EnableWebMvc
 public class MvcConfiguration implements WebMvcConfigurer {
+
 	@Autowired
 	private ApplicationContext applicationContext;
 
 	@Bean
-    public ViewResolver viewResolver() {
+	public ViewResolver viewResolver() {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(springTemplateEngine());
 		return resolver;
@@ -32,20 +33,20 @@ public class MvcConfiguration implements WebMvcConfigurer {
 
 	@Bean
 	public SpringTemplateEngine springTemplateEngine() {
-	  SpringTemplateEngine engine = new SpringTemplateEngine();
-	  engine.setEnableSpringELCompiler(true);
-	  engine.setTemplateResolver(templateResolver());
-	  return engine;
+		SpringTemplateEngine engine = new SpringTemplateEngine();
+		engine.setEnableSpringELCompiler(true);
+		engine.setTemplateResolver(templateResolver());
+		return engine;
 	}
 
 	@Bean
-    public SpringResourceTemplateResolver templateResolver() {
-	  SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
-	  resolver.setApplicationContext(this.applicationContext);
-	  resolver.setPrefix("/WEB-INF/views/");
-	  resolver.setSuffix(".html");
-	  resolver.setTemplateMode(TemplateMode.HTML);
-	  return resolver;
+	public SpringResourceTemplateResolver templateResolver() {
+		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+		resolver.setApplicationContext(this.applicationContext);
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".html");
+		resolver.setTemplateMode(TemplateMode.HTML);
+		return resolver;
 	}
 
 	@Override
@@ -54,7 +55,8 @@ public class MvcConfiguration implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public MultipartResolver multipartResolver(){
+	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
 	}
+
 }

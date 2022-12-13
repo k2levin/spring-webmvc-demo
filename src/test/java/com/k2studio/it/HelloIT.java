@@ -1,18 +1,16 @@
 package com.k2studio.it;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class HelloIT{
+public class HelloIT {
 
 	private static String port;
 
@@ -24,7 +22,7 @@ public class HelloIT{
 	@Test
 	public void hello() throws IOException {
 		String testName = "testname";
-		HttpURLConnection connection = (HttpURLConnection)new URL("http://localhost:" + port +"/hello?name="+testName).openConnection();
+		HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:" + port + "/hello?name=" + testName).openConnection();
 		{
 			connection.connect();
 			assertEquals(200, connection.getResponseCode());
