@@ -13,9 +13,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class HelloIT{
-	
-	private static String port, name;
-	
+
+	private static String port;
+
 	@BeforeAll
 	public static void findPort() {
 		port = System.getProperty("servlet.port", "8080");
@@ -28,7 +28,7 @@ public class HelloIT{
 		{
 			connection.connect();
 			assertEquals(200, connection.getResponseCode());
-			
+
 			try (InputStream in = connection.getInputStream()) {
 				String output = IOUtils.toString(in, StandardCharsets.UTF_8);
 				assertTrue(output.contains(testName), "Sent name not found in page  with source \n" + output);
