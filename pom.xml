@@ -81,6 +81,13 @@
 			<version>2.11.0</version>
 		</dependency>
 
+		<!-- Binding/provider for java.util.logging, also referred to as JDK 1.4 logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+
 		<!-- Jackson JSON Mapper -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -88,6 +95,14 @@
 			<version>2.14.1</version>
 		</dependency>
 
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.0.Final</version>
+		</dependency>
+
+		<!-- Testing -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
@@ -162,6 +177,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.0.0-M7</version>
 				<executions>
 					<execution>
 						<id>perform-it</id>
@@ -190,5 +206,11 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/webapp/resources</directory>
+			</resource>
+		</resources>
+		<defaultGoal>jetty:run</defaultGoal>
 	</build>
 </project>
