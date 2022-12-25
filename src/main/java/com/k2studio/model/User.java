@@ -5,10 +5,12 @@ import jakarta.validation.constraints.Size;
 
 public class User {
 
-    @NotNull @Size(min = 2, max = 8)
+    @NotNull
+    @Size(min = 2, max = 8)
     private String name;
 
-    @NotNull @Size(min = 2, max = 8)
+    @NotNull
+    @Size(min = 2, max = 8)
     private String name2;
 
     public String getName() {

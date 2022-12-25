@@ -12,6 +12,6 @@ import org.springframework.context.annotation.PropertySource;
     org.springdoc.webmvc.ui.SwaggerConfig.class,
     org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration.class,
 })
-public class SpringDocOpenApiConfig {
+public class ApiConfig {
     //
 }

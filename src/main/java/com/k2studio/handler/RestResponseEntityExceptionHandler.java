@@ -36,9 +36,10 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return handleExceptionInternal(ex, body, headers, status, request);
     }
 
-    protected ProblemDetail createProblemDetail(Exception ex, HttpStatusCode status, String detail, WebRequest request) {
-		ErrorResponse.Builder builder = ErrorResponse.builder(ex, status, detail);
-		return builder.build().updateAndGetBody(null, LocaleContextHolder.getLocale());
-	}
+    protected ProblemDetail createProblemDetail(Exception ex, HttpStatusCode status, String detail,
+            WebRequest request) {
+        ErrorResponse.Builder builder = ErrorResponse.builder(ex, status, detail);
+        return builder.build().updateAndGetBody(null, LocaleContextHolder.getLocale());
+    }
 
 }

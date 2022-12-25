@@ -17,7 +17,7 @@
 		<java.version>17</java.version>
 		<servlet.port>8080</servlet.port>
 		<jetty.stop.port>9000</jetty.stop.port>
-		<spring.version>6.0.2</spring.version>
+		<spring.version>6.0.3</spring.version>
 		<cglib.version>3.3.0</cglib.version>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -211,6 +211,16 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
+				</configuration>
 			</plugin>
 		</plugins>
 		<resources>
