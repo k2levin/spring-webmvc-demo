@@ -12,26 +12,28 @@ import org.junit.jupiter.api.Test;
 
 public class HelloIT {
 
-    private static String port;
+	private static String port;
 
-    @BeforeAll
-    public static void findPort() {
-        port = System.getProperty("servlet.port", "8080");
-    }
+	@BeforeAll
+	public static void findPort() {
+		port = System.getProperty("servlet.port", "8080");
+	}
 
-    @Test
-    public void hello() throws IOException {
-        String testName = "testname";
-        HttpURLConnection connection = (HttpURLConnection) new URL("http://localhost:" + port + "/hello?name=" + testName).openConnection();
-        {
-            connection.connect();
-            assertEquals(200, connection.getResponseCode());
+	@Test
+	public void hello() throws IOException {
+		String testName = "testname";
+		String url = "http://localhost:" + port + "/hello?name=" + testName;
+		HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+		{
+			connection.connect();
+			assertEquals(200, connection.getResponseCode());
 
-            try (InputStream in = connection.getInputStream()) {
-                String output = IOUtils.toString(in, StandardCharsets.UTF_8);
-                assertTrue(output.contains(testName), "Sent name not found in page  with source \n" + output);
-            }
-        }
-    }
+			try (InputStream in = connection.getInputStream()) {
+				String output = IOUtils.toString(in, StandardCharsets.UTF_8);
+				String message = "Sent name not found in page  with source \n" + output;
+				assertTrue(output.contains(testName), message);
+			}
+		}
+	}
 
 }

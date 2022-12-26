@@ -16,30 +16,29 @@ import jakarta.validation.ConstraintViolationException;
 @RestControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ConstraintViolationException.class})
-    protected ResponseEntity<Object> handleConstraintViolationException(Exception ex, WebRequest request) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
-        String detail = ex.getMessage();
-        ProblemDetail body = createProblemDetail(ex, status, detail, request);
-        body.setProperty("stackTrace", ex.getStackTrace());
-        HttpHeaders headers = new HttpHeaders();
-        return handleExceptionInternal(ex, body, headers, status, request);
-    }
+	@ExceptionHandler({ConstraintViolationException.class})
+	protected ResponseEntity<Object> handleConstraintViolationException(Exception ex, WebRequest request) {
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		String detail = ex.getMessage();
+		ProblemDetail body = createProblemDetail(ex, status, detail, request);
+		body.setProperty("stackTrace", ex.getStackTrace());
+		HttpHeaders headers = new HttpHeaders();
+		return handleExceptionInternal(ex, body, headers, status, request);
+	}
 
-    @ExceptionHandler(RuntimeException.class)
-    protected ResponseEntity<Object> handleRuntimeException(Exception ex, WebRequest request) {
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-        String detail = ex.getMessage();
-        ProblemDetail body = createProblemDetail(ex, status, detail, request);
-        body.setProperty("stackTrace", ex.getStackTrace());
-        HttpHeaders headers = new HttpHeaders();
-        return handleExceptionInternal(ex, body, headers, status, request);
-    }
+	@ExceptionHandler(RuntimeException.class)
+	protected ResponseEntity<Object> handleRuntimeException(Exception ex, WebRequest request) {
+		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+		String detail = ex.getMessage();
+		ProblemDetail body = createProblemDetail(ex, status, detail, request);
+		body.setProperty("stackTrace", ex.getStackTrace());
+		HttpHeaders headers = new HttpHeaders();
+		return handleExceptionInternal(ex, body, headers, status, request);
+	}
 
-    protected ProblemDetail createProblemDetail(Exception ex, HttpStatusCode status, String detail,
-            WebRequest request) {
-        ErrorResponse.Builder builder = ErrorResponse.builder(ex, status, detail);
-        return builder.build().updateAndGetBody(null, LocaleContextHolder.getLocale());
-    }
+	protected ProblemDetail createProblemDetail(Exception ex, HttpStatusCode status, String detail, WebRequest request) {
+		ErrorResponse.Builder builder = ErrorResponse.builder(ex, status, detail);
+		return builder.build().updateAndGetBody(null, LocaleContextHolder.getLocale());
+	}
 
 }

@@ -8,14 +8,14 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 @Configuration
 public class ValidationConfig {
 
-    @Bean
-    public static BeanValidationPostProcessor beanValidationPostProcessor() {
-        return new BeanValidationPostProcessor();
-    }
+	@Bean
+	public static BeanValidationPostProcessor beanValidationPostProcessor() {
+		return new BeanValidationPostProcessor();
+	}
 
-    @Bean
-    public static MethodValidationPostProcessor methodValidationPostProcessor() {
-        return new MethodValidationPostProcessor();
-    }
+	@Bean
+	public static MethodValidationPostProcessor methodValidationPostProcessor() {
+		return new MethodValidationPostProcessor();
+	}
 
 }

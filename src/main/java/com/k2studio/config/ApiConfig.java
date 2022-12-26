@@ -9,9 +9,9 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:properties/springdoc.properties")
 @ComponentScan(basePackages = {"org.springdoc"})
 @Import({
-    org.springdoc.webmvc.ui.SwaggerConfig.class,
-    org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration.class,
+	org.springdoc.webmvc.ui.SwaggerConfig.class,
+	org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration.class,
 })
 public class ApiConfig {
-    //
+	//
 }
