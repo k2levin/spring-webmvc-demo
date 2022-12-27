@@ -17,8 +17,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 @RestController
 public class HttpClientController {
 
-    @GetMapping(value = "/httpclient/async/get", produces = "application/json")
-    public String getHttpClientAsync() {
+	@GetMapping(value = "/httpclient/async/get", produces = "application/json")
+	public String getHttpClientAsync() {
 		HttpRequest httpRequest = HttpRequest.newBuilder()
 			.uri(URI.create("https://petstore.swagger.io/v2/pet/9222968140497181029"))
 			.GET()
@@ -31,27 +31,27 @@ public class HttpClientController {
 			.join();
 
 		return response;
-    }
+	}
 
-    @GetMapping(value = "/httpclient/sync/get", produces = "application/json")
-    public String getHttpClientSync() throws Exception {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
+	@GetMapping(value = "/httpclient/sync/get", produces = "application/json")
+	public String getHttpClientSync() throws Exception {
+		HttpRequest httpRequest = HttpRequest.newBuilder()
 			.uri(URI.create("https://petstore.swagger.io/v2/pet/9222968140497181029"))
 			.GET()
 			.header("Content-Type", "application/json")
 			.timeout(Duration.ofSeconds(20))
 			.build();
 
-        String response = getHttpClient().send(httpRequest, BodyHandlers.ofString()).body();
+		String response = getHttpClient().send(httpRequest, BodyHandlers.ofString()).body();
 
 		return response;
-    }
+	}
 
-    @PostMapping(value = "/httpclient/async/post", produces = "application/json")
-    public String postHttpClientAsync() throws JsonProcessingException {
+	@PostMapping(value = "/httpclient/async/post", produces = "application/json")
+	public String postHttpClientAsync() throws JsonProcessingException {
 		HttpRequest httpRequest = HttpRequest.newBuilder()
 			.uri(URI.create("https://petstore.swagger.io/v2/pet"))
-          	.POST(BodyPublishers.ofString(getRequestBody()))
+		  	.POST(BodyPublishers.ofString(getRequestBody()))
 			.header("Content-Type", "application/json")
 			.timeout(Duration.ofSeconds(10))
 			.build();
@@ -60,43 +60,43 @@ public class HttpClientController {
 			.thenApply(HttpResponse::body)
 			.join();
 
-        return response;
-    }
+		return response;
+	}
 
-    @PostMapping(value = "/httpclient/sync/post", produces = "application/json")
-    public String postHttpClientSync() throws Exception {
-        HttpRequest httpRequest = HttpRequest.newBuilder()
+	@PostMapping(value = "/httpclient/sync/post", produces = "application/json")
+	public String postHttpClientSync() throws Exception {
+		HttpRequest httpRequest = HttpRequest.newBuilder()
 			.uri(URI.create("https://petstore.swagger.io/v2/pet"))
-          	.POST(BodyPublishers.ofString(getRequestBody()))
+		  	.POST(BodyPublishers.ofString(getRequestBody()))
 			.header("Content-Type", "application/json")
 			.timeout(Duration.ofSeconds(10))
 			.build();
 
-        String response = getHttpClient().send(httpRequest, BodyHandlers.ofString()).body();
+		String response = getHttpClient().send(httpRequest, BodyHandlers.ofString()).body();
 
-        return response;
-    }
+		return response;
+	}
 
-    private HttpClient getHttpClient() {
-        HttpClient httpClient = HttpClient.newBuilder()
+	private HttpClient getHttpClient() {
+		HttpClient httpClient = HttpClient.newBuilder()
 			.version(Version.HTTP_2)
 			.followRedirects(Redirect.NORMAL)
 			.build();
-        return httpClient;
-    }
+		return httpClient;
+	}
 
-    private String getRequestBody() {
-        String requestBody = "{\"id\":0,\"category\":{\"id\":0,\"name\":\"string\"},\"name\":\"kkkvvvnnn\",\"photoUrls\":[\"string\"],\"tags\":[{\"id\":0,\"name\":\"string\"}],\"status\":\"available\"}";
-        return requestBody;
-    }
+	private String getRequestBody() {
+		String requestBody = "{\"id\":0,\"category\":{\"id\":0,\"name\":\"string\"},\"name\":\"kkkvvvnnn\",\"photoUrls\":[\"string\"],\"tags\":[{\"id\":0,\"name\":\"string\"}],\"status\":\"available\"}";
+		return requestBody;
+	}
 
-    // private String getRequestBody2() throws JsonProcessingException {
-    //     HashMap<String, String> data = new HashMap<String, String>();
+	// private String getRequestBody2() throws JsonProcessingException {
+	//     HashMap<String, String> data = new HashMap<String, String>();
 	// 	data.put("username", "kkkvvv");
 	// 	data.put("password", "password");
 
 	// 	String requestBody = new ObjectMapper().writeValueAsString(data);
-    //     return requestBody;
-    // }
+	//     return requestBody;
+	// }
 
 }
