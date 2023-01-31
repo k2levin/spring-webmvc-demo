@@ -1,4 +1,12 @@
 {
+  "boot-java.rewrite.reconcile": true,
+  "editor.rulers": [118, 150],
   "java.compile.nullAnalysis.mode": "automatic",
-  "java.configuration.updateBuildConfiguration": "automatic"
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.format.settings.url": "https://raw.githubusercontent.com/spring-io/spring-javaformat/main/.eclipse/eclipse-code-formatter.xml",
+  "java.format.settings.profile": "Spring Java Conventions",
+  "[java]": {
+    "editor.insertSpaces": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+  }
 }
